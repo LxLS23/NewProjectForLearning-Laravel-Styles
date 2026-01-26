@@ -88,9 +88,29 @@
             function addBotMessage(text) {
                 chatContainer.insertAdjacentHTML('beforeend', `
             <div class="flex items-start gap-2.5 mb-4">
-                <div class="flex flex-col max-w-[320px] p-4 bg-white rounded-xl border shadow-sm">
-                    <span class="text-sm font-semibold">Asistente virtual</span>
-                    <p class="text-sm text-gray-700">${text}</p>
+                <div
+                    class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 bg-white rounded-e-xl rounded-es-xl border border-gray-200 shadow-sm">
+                    <div class="flex items-center space-x-2 rtl:space-x-reverse mb-2">
+                        <span class="text-sm font-semibold text-gray-900">Asistente virtual</span>
+                        <span class="text-xs text-gray-500">hour</span>
+                    </div>
+                    <p class="text-sm text-gray-700">${text}
+                    </p>
+                </div>
+                <button type="button" data-dropdown-toggle="dropdownDots1"
+                    class="inline-flex self-center items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50">
+                    <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor" viewBox="0 0 4 15">
+                        <path
+                            d="M3.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 6.041a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 5.959a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
+                    </svg>
+                </button>
+                <div id="dropdownDots1" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-40">
+                    <ul class="py-2 text-sm text-gray-700">
+                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Responder</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Copiar</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Eliminar</a></li>
+                    </ul>
                 </div>
             </div>
         `);
@@ -99,9 +119,30 @@
 
             function addUserMessage(text) {
                 chatContainer.insertAdjacentHTML('beforeend', `
-            <div class="flex justify-end mb-4">
-                <div class="bg-blue-100 p-4 rounded-xl max-w-[320px]">
-                    <p class="text-sm">${text}</p>
+            <div class="flex items-start gap-2.5 mb-4 justify-end">
+                <div
+                    class="flex flex-col w-auto max-w-[320px] leading-1.5 p-4 bg-blue-100 rounded-e-xl rounded-es-xl border border-blue-200 shadow-sm">
+                    <div class="flex items-center space-x-2 rtl:space-x-reverse mb-2">
+                        <span class="text-sm font-semibold text-gray-900">Tú</span>
+                        <span class="text-xs text-gray-500">hour</span>
+                    </div>
+                    <p class="text-sm text-gray-700">${text}
+                    </p>
+                </div>
+                <button type="button" data-dropdown-toggle="dropdownDots1"
+                    class="inline-flex self-center items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50">
+                    <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor" viewBox="0 0 4 15">
+                        <path
+                            d="M3.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 6.041a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 5.959a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
+                    </svg>
+                </button>
+                <div id="dropdownDots1" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-40">
+                    <ul class="py-2 text-sm text-gray-700">
+                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Responder</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Copiar</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Eliminar</a></li>
+                    </ul>
                 </div>
             </div>
         `);
