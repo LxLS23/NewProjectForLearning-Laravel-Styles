@@ -25,6 +25,9 @@ class ChatService
     {
         $message = $this->normalize($message);
 
+        // Separar mensaje en palabras
+        $messageWords = explode(' ', $message);
+
         $faqs = Cache::remember('faqs_activas', 3600, function () {
             return Faq::where('activo', true)->get();
         });
@@ -40,7 +43,14 @@ class ChatService
                 $keyword = $this->normalize($keyword);
 
                 if (str_contains($message, $keyword)) {
-                    $score++;
+                    $score += 2;
+                }
+
+                // Coincidencia palabra por palabra
+                foreach ($messageWords as $word) {
+                    if ($word === $keyword) {
+                        $score += 1;
+                    }
                 }
             }
 
@@ -50,10 +60,10 @@ class ChatService
             }
         }
 
-        if ($bestScore >= 1) {
+        if ($bestScore >= 2) {
             return $bestAnswer;
         }
 
-        return 'No encontre información relacionada.';
+        return 'No encontre información relacionada. ¿Puedes reformular tu pregunta?';
     }
 }

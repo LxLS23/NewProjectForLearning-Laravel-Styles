@@ -19,7 +19,7 @@
             </div>
 
             {{-- Área de Mensajes --}}
-            <div class="flex-1 overflow-y-auto bg-gray-50 p-6" id="chat-container">
+            <div class="flex-1 overflow-y-auto bg-gray-100 p-6" id="chat-container">
 
                 {{-- Mensaje del Bot --}}
                 <div class="flex items-start gap-2.5 mb-4">
@@ -76,8 +76,8 @@
                     <div class="flex-1">
                         <label for="chat-input" class="sr-only">Escribe tu mensaje</label>
                         <div class="relative">
-                            <input type="text" id="chat-input" name="message"
-                                class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+                            <input type="text" id ="chat-input" name="message"
+                                class="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
                                 placeholder="Escribe tu mensaje aquí..." required />
                         </div>
                     </div>
@@ -150,7 +150,19 @@
             function sleep(ms) {
                 return new Promise(resolve => setTimeout(resolve, ms));
             }
+/*
+            function speak(text) {
+                if (!('speechSynthesis' in window)) return;
 
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'es-MX';
+                utterance.rate = 1; // velocidad
+                utterance.pitch = 1; // tono
+                utterance.volume = 1;
+
+                speechSynthesis.speak(utterance);
+            }
+*/
             chatForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
 
@@ -179,6 +191,7 @@
                         'No recibí una respuesta del servidor.';
                     await sleep(400)
                     addMessage(botResponse, false);
+                    //speak(botResponse);
 
                 } catch (error) {
                     console.error('Error:', error);
@@ -186,7 +199,8 @@
                     addMessage(
                         'Lo siento, hubo un error al procesar tu mensaje. Por favor, intenta de nuevo.',
                         false);
-                }
+                    //speak(botResponse);
+                }   
             });
 
             chatInput.focus();
