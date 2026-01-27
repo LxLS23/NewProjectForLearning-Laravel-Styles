@@ -16,6 +16,6 @@ Route::get('/', function(){
 Route::post('/chatbot', [ChatController::class, 'send']);
 
 Route::get('/chatbot', function() {
-    return view('Components.chatbot');
+    return view('Vistas.chatbot');
 });
 

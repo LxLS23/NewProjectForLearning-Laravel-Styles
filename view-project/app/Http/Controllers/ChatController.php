@@ -15,7 +15,7 @@ class ChatController extends Controller
 
     public function send(Request $request) {
         $request -> validate([  
-            'message' => 'required|string|max:255'
+            'message' => 'required|string|max:150'
         ]);
 
         $response = $this -> chatbot->getResponse($request->message);

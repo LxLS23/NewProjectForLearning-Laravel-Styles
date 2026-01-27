@@ -54,6 +54,6 @@ class ChatService
             return $bestAnswer;
         }
 
-        return 'No encontre información relacionada. Contacte a example@example.com';
+        return 'No encontre información relacionada.';
     }
 }
