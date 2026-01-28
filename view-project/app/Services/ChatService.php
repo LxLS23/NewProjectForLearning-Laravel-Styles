@@ -7,10 +7,9 @@ use Illuminate\Support\Facades\Cache;
 
 class ChatService
 {
-
     private function normalize(String $text): string
     {
-        $text = strtolower(trim($text));
+        $text = mb_strtolower(trim($text), 'UTF-8');
         $text = preg_replace('/[^\p{L}\p{N}\s]/u', '', $text);
         $text = str_replace(
             ['á', 'é', 'í', 'ó', 'ú'],
@@ -20,13 +19,53 @@ class ChatService
         return $text;
     }
 
+    private array $stopWords = [
+        'que',
+        'como',
+        'cual',
+        'cuales',
+        'donde',
+        'cuando',
+        'por',
+        'para',
+        'el',
+        'la',
+        'los',
+        'las',
+        'un',
+        'una',
+        'unos',
+        'unas',
+        'de',
+        'del',
+        'al',
+        'en',
+        'y',
+        'o',
+        'es',
+        'son',
+        'tienen',
+        'tengo',
+        'me',
+        'mi',
+        'tu',
+        'su',
+        'se',
+        'a'
+    ];
+
+    private function filterWords(array $words): array
+    {
+        return array_values(array_filter($words, function ($word) {
+            return $word !== '' && !in_array($word, $this->stopWords, true);
+        }));
+    }
+
     public function getResponse(String $message): string
     {
         //Normalizar mensaje 
         $message = $this->normalize($message);
-
-        // Separar mensaje en palabras
-        $messageWords = explode(' ', $message);
+        $messageWords = $this->filterWords(explode(' ', $message));
 
         //FAQs en Cache
         $faqs = Cache::remember('faqs_activas', 3600, function () {
@@ -41,8 +80,7 @@ class ChatService
 
             //Evaluar Pregunta
             $normalizedQuestion = $this->normalize($faq->pregunta);
-            $questionWords = explode(' ', $normalizedQuestion);
-
+            $questionWords = $this->filterWords(explode(' ', $normalizedQuestion));
             // Coincidencia directa con la pregunta
             if (str_contains($message, $normalizedQuestion)) {
                 $score += 3;

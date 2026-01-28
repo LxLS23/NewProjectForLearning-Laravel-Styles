@@ -7,7 +7,7 @@
     <div class="flex flex-col items-center justify-center max-h-screen">
 
         <div
-            class="flex flex-col w-full max-w-md h-[600px] bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+            class="flex flex-col w-full max-w-md h-150 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
             {{-- Header del Chat --}}
             <div class="bg-white border-b border-gray-200 px-6 py-4">
                 <div class="flex items-center gap-3">
@@ -45,7 +45,7 @@
                                 <span class="text-sm font-semibold">Tú</span>
                                 <span class="time text-xs text-gray-500 ml-2"></span>
                             </div>
-                            <p class="message text-sm break-words whitespace-pre-wrap"></p>
+                            <p class="message text-sm wrap-break-word whitespace-pre-wrap"></p>
                             <span class="text-xs text-gray-500 mt-1">Enviado</span>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                                 <span class="text-sm font-semibold">Asistente virtual</span>
                                 <span class="time text-xs text-gray-500 ml-2"></span>
                             </div>
-                            <p class="message text-sm break-words whitespace-pre-wrap"></p>
+                            <p class="message text-sm wrap-break-word whitespace-pre-wrap"></p>
                             <span class="text-xs text-gray-500 mt-1">Entregado</span>
                         </div>
                     </div>
