@@ -3,8 +3,8 @@
 @section('title', 'Index Probe')
 
 @section('content')
-<div class="">
-    <div data-dial-init class=" bottom-6 right-10 group">
+<div class="flex flex-col min-h-screen">
+    <div data-dial-init class="fixed bottom-20 right-10 group">
         <button type="button" data-popover-target="popover-chat-info"
             aria-controls="speed-dial-menu-dropdown-alternative" aria-expanded="false"
             class="flex items-center justify-center ml-auto text-white bg-brand rounded-full w-14 h-14 hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium focus:outline-none">
