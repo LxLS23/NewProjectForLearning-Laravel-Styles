@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
             addMessage(botResponse, false);
 
         } catch (error) {
-            console.error(error);
+            //console.error(error);
             await sleep(400);
             addMessage(
                 'Lo siento, ocurrió un error. Intenta nuevamente.',
