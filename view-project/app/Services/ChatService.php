@@ -20,14 +20,15 @@ class ChatService
         return $text;
     }
 
-
     public function getResponse(String $message): string
     {
+        //Normalizar mensaje 
         $message = $this->normalize($message);
 
         // Separar mensaje en palabras
         $messageWords = explode(' ', $message);
 
+        //FAQs en Cache
         $faqs = Cache::remember('faqs_activas', 3600, function () {
             return Faq::where('activo', true)->get();
         });
@@ -36,8 +37,27 @@ class ChatService
         $bestAnswer = null;
 
         foreach ($faqs as $faq) {
-            $keywords = explode(',', $faq->palabras_clave);
             $score = 0;
+
+            //Evaluar Pregunta
+            $normalizedQuestion = $this->normalize($faq->pregunta);
+            $questionWords = explode(' ', $normalizedQuestion);
+
+            // Coincidencia directa con la pregunta
+            if (str_contains($message, $normalizedQuestion)) {
+                $score += 3;
+            }
+
+            // Coincidencia palabra por palabra (pregunta)
+            foreach ($questionWords as $qWord) {
+                foreach ($messageWords as $mWord) {
+                    if ($qWord === $mWord) {
+                        $score += 2;
+                    }
+                }
+            }
+
+            $keywords = explode(',', $faq->palabras_clave);
 
             foreach ($keywords as $keyword) {
                 $keyword = $this->normalize($keyword);
