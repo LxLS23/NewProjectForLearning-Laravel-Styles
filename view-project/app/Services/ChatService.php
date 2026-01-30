@@ -24,7 +24,7 @@ class ChatService
         'tu', 'su', 'se', 'a', 'si', 'no', 'hay', 'esta', 'esto', 'ese'
     ];
 
-    //Normaliza texto removiendo acentos, caracteres especiales convirtiendo a minusculas
+    //Normalizar texto
     private function normalize(string $text): string
     {
         $text = mb_strtolower(trim($text), 'UTF-8');
@@ -48,7 +48,7 @@ class ChatService
         return trim($text);
     }
 
-    //Filtrar palabras vacías y stop words
+    //Filtrar palabras vacías y stop words  
     private function filterWords(array $words): array
     {
         return array_values(array_filter(
