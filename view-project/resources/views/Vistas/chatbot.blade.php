@@ -29,8 +29,7 @@
                             <span class="text-sm font-semibold text-gray-900">Asistente virtual</span>
                             <span class="text-xs text-gray-500"></span>
                         </div>
-                        <p class="text-sm text-gray-700">¡Hola! Soy tu asistente virtual del HNM. ¿En qué puedo ayudarte
-                            hoy?
+                        <p class="text-sm text-gray-700">¡Hola! Soy tu asistente virtual del HNM. ¿En qué puedo ayudarte?
                         </p>
                     </div>
                 </div>
